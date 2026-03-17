@@ -1,0 +1,290 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Futuristic Gold Theme Variables */
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: rgba(40, 30, 10, 0.6);
+  --card-foreground: #ffffff;
+  --popover: #000000;
+  --popover-foreground: #ffffff;
+  --primary: #ffd700;
+  --primary-foreground: #000000;
+  --secondary: #1a1408;
+  --secondary-foreground: #ffd700;
+  --muted: #1a1408;
+  --muted-foreground: #f0c850;
+  --accent: #ffd700;
+  --accent-foreground: #000000;
+  --destructive: #ff0055;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 215, 0, 0.2);
+  --input: rgba(255, 215, 0, 0.1);
+  --ring: #ffd700;
+  --radius: 0.75rem;
+  
+  /* Custom neon colors */
+  --neon-cyan: #ffd700;
+  --neon-blue: #ffaa00;
+  --neon-purple: #ff8800;
+  --glow-color: rgba(255, 215, 0, 0.5);
+}
+
+@theme inline {
+  --font-sans: 'Rajdhani', 'Geist', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --font-display: 'Orbitron', sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: #000000;
+    overflow-x: hidden;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Readable text defaults */
+  p, span, li, td, th, label {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Larger readable text for descriptions */
+  .text-lg, .text-xl {
+    line-height: 1.7;
+  }
+  
+  /* Better contrast for muted text */
+  .text-\[\#7dd3fc\] {
+    color: #f0c850;
+  }
+  
+  /* Keep Orbitron for headings only */
+  h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  h4, h5, h6 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue);
+}
+
+/* Glowing text effects */
+.glow-text {
+  text-shadow: 
+    0 0 10px var(--neon-cyan),
+    0 0 20px var(--neon-cyan),
+    0 0 40px var(--neon-cyan),
+    0 0 80px var(--neon-blue);
+}
+
+.glow-text-subtle {
+  text-shadow: 
+    0 0 5px var(--neon-cyan),
+    0 0 10px var(--neon-cyan);
+}
+
+/* Glowing border effect */
+.glow-border {
+  box-shadow: 
+    0 0 5px var(--neon-cyan),
+    0 0 10px var(--neon-cyan),
+    inset 0 0 5px rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--neon-cyan);
+}
+
+.glow-border-subtle {
+  box-shadow: 
+    0 0 3px rgba(255, 215, 0, 0.3),
+    inset 0 0 3px rgba(255, 215, 0, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(30, 25, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Animated gradient background */
+.gradient-bg {
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(255, 170, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 136, 0, 0.1) 0%, transparent 50%),
+    #000000;
+}
+
+/* Section animations */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+/* Pulse animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px var(--neon-cyan),
+      0 0 10px var(--neon-cyan),
+      0 0 20px var(--neon-cyan);
+  }
+  50% {
+    box-shadow: 
+      0 0 10px var(--neon-cyan),
+      0 0 20px var(--neon-cyan),
+      0 0 40px var(--neon-cyan);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scan line effect */
+@keyframes scan-line {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.scan-effect::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 215, 0, 0.1),
+    transparent
+  );
+  animation: scan-line 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Grid lines background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Cyber line decoration */
+.cyber-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+}
+
+/* Card hover effect */
+.cyber-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 0 20px var(--neon-cyan),
+    0 0 40px rgba(255, 215, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Particle styles */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
